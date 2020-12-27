@@ -1,6 +1,6 @@
 import { ADD_ERROR, REMOVE_ERROR } from "../actionTypes";
 
-export default function errors(state = {message: null}, action) {
+function errors(state = {message: null}, action) {
     switch (action.type) {
         case ADD_ERROR:
             return { ...state, message: action.error };
@@ -10,3 +10,5 @@ export default function errors(state = {message: null}, action) {
             return state;
     }
 };
+
+export default errors;

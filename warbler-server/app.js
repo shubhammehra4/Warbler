@@ -2,49 +2,35 @@ require('dotenv').config();
 const express = require('express'),
     cors = require('cors'),
     bodyParser = require('body-parser'),
+    db = require('./models/index');
     app = express();
+const errorHandler = require('./handlers/error');
+
 
 app.use(cors());
 app.use(bodyParser.json());
     
-const errorHandler = require('./handlers/error');
 
 //* Routes
 const authRoutes = require('./routes/auth'),
     messageRoutes = require('./routes/messages');
 
-const db = require('./models');
-
-const {
-    loginRequired,
-    ensureCorrectUser
-} = require('./middlewares/auth');
+const { loginRequired, ensureCorrectUser } = require('./middlewares/auth');
 
 app.use('/api/auth', authRoutes);
-app.use(
-    '/api/users/:id/messages',
-    loginRequired,
-    ensureCorrectUser,
-    messageRoutes
-);
+app.use('/api/users/:id/messages', loginRequired, ensureCorrectUser, messageRoutes);
 
 app.get("/api/messages", loginRequired, async function (req, res, next) {
     try {
-        let messages =
-            await db.Messages
-            .find()
-            .sort({
-                createdAt: "desc"
-            })
-            .populate("user", {
-                username: true,
-                profileImage: true
-            });
+        let messages = await db.Message.find()
+                .sort({ createdAt: "desc" })
+                .populate("user", { username: true, profileImage: true });
         return res.status(200).json(messages);
     } catch (err) {
         return next(err);
     }
 });
+
 
 //*Errors
 app.use(function (req, res, next) {
