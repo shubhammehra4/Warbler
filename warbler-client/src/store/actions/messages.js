@@ -1,6 +1,6 @@
 import { apiCall } from "../../services/api";
 import { addError } from "./errors";
-import { LOAD_MESSAGES } from "../actionTypes";
+import { LOAD_MESSAGES, REMOVE_MESSAGES, NEW_MESSAGE } from "../actionTypes";
 
 
 export const loadMessages = messages => ({
@@ -8,14 +8,40 @@ export const loadMessages = messages => ({
     messages
 });
 
+export const remove = id => {
+    return {
+        type: REMOVE_MESSAGES,
+        id
+    };
+};
+
+export const newMessage = message => {
+    return {
+        type: NEW_MESSAGE,
+        message
+    }
+}
+
 export const fetchMessages = () => {
     return dispatch => {
         return apiCall("GET", "/api/messages")
-            .then(res => {
-                dispatch(loadMessages(res))
-            })
-            .catch(err => {
-                addError(err.message)
-            });
+            .then(res => dispatch(loadMessages(res)))
+            .catch(err => dispatch(addError(err.message)));
     };
 };
+
+export const postNewMessage = (text) => (dispatch, getSate) => {
+    let { currentUser } = getSate();
+    let id = currentUser.user.id;
+    return apiCall("post", `/api/users/${id}/messages`, {text})
+        .then(res => dispatch(newMessage(res)))
+        .catch(err => dispatch(addError(err.message)))
+};
+
+export const removeMessage = (user_id, message_id) => {
+    return dispatch => {
+        return apiCall("delete", `/api/users/${user_id}/messages/${message_id}`)
+            .then(() => dispatch(remove(message_id)))
+            .catch(err => dispatch(addError(err.message)));
+    }
+}
