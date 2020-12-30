@@ -20,7 +20,6 @@ class MessageForm extends Component {
         this.props.postNewMessage(this.state.text);
         this.setState({text:''});
     };
-
     render() {
         const { profileImage, username } = this.props;
         const { text } = this.state;
@@ -28,17 +27,22 @@ class MessageForm extends Component {
             <form onSubmit={this.handleSubmit}>
                 <div className="new-message-form">
                     <img src={profileImage} alt={username} height="100" width="100" className="user-image" />
+                    <div className="new-message-input">
                     <input 
                         className="form-control rounded-pill new-message" 
-                        type="text" 
+                        type="textarea" 
                         name="text"
-                        placeholder="What's on you Mind?"
+                        placeholder="What's on your Mind?"
                         onChange={this.handleChange}
                         value={text}
                     />
-                    <button className="post-message" type="submit">Tweet</button>
+                    <hr></hr>
+                    <div className="post-message-options">
+                        <button className="float-right post-message" type="submit">Tweet</button>
+                    </div>
+                    </div>
+                    
                 </div>
-                <hr></hr>
             </form>
         );
     };

@@ -14,7 +14,7 @@ exports.signin = async function (req, res, next) {
                     username,
                     profileImage
                 },
-                process.env.SECRET_KEY
+                process.env.SECRET_KEYp
             );
             return res.status(200).json({
                 id,

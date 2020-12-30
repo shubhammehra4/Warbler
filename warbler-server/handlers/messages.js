@@ -21,21 +21,37 @@ exports.createMessage = async function (req, res, next) {
     }
 };
 
-// exports.likeMessage = async function (req, res, next) {
-//     try {
-//         let foundMessage = await db.Message.findById(req.params.message._id);
-//         let foundUser = await db.User.findById(req.params.id);
-//         foundUser.likedMessages.push(foundMessage.id);
-//         await foundUser.save();
-//         foundMessage.likes.push(foundUser.id);
-//         await foundMessage.save();
-//         return res.status(200).json({
-//             liked: "Successful"
-//         })
-//     } catch (err) {
-//         next(err);
-//     }
-// };
+exports.likeMessage = async function (req, res, next) {
+    try {
+        let foundMessage = await db.Message.findById(req.params.message_id);
+        let foundUser = await db.User.findById(req.params.id);
+        foundUser.likedMessages.push(foundMessage.id);
+        await foundUser.save();
+        foundMessage.likes.push(foundUser.id);
+        await foundMessage.save();
+        return res.status(200).json({
+            like: "Successful"
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
+exports.unlikeMessage = async function (req, res, next) {
+    try {
+        let foundMessage = await db.Message.findById(req.params.message_id);
+        let foundUser = await db.User.findById(req.params.id);
+        foundUser.likedMessages.pull(foundMessage.id);
+        await foundUser.save();
+        foundMessage.likes.pull(foundUser.id);
+        await foundMessage.save();
+        return res.status(200).json({
+            unlike: "Successful"
+        });
+    } catch (err) {
+        next(err);
+    }
+}
 
 exports.getMessage = async function (req, res, next)  {
     try {
