@@ -25,13 +25,13 @@ exports.signin = async function (req, res, next) {
         } else {
             return next({
                 status: 400,
-                message: "Invalid Email/Password."
+                message: "Invalid Password."
             });
         }
     } catch (err) {
         return next({
             status: 400,
-            message: "Invalid Email/Password."
+            message: "Invalid Email."
         });
     }
 
@@ -39,25 +39,35 @@ exports.signin = async function (req, res, next) {
 
 exports.signup = async function (req, res, next) {
     try {
-        let user = await db.User.create(req.body);
-        let { id, username, profileImage } = user;
-        let token = jwt.sign({
+        if (req.body.password === req.body.confirmpassword) {
+            let user = await db.User.create(req.body);
+            let { id, username, profileImage } = user;
+            let token = jwt.sign({
+                    id,
+                    username,
+                    profileImage
+                },
+                process.env.SECRET_KEY
+            );
+            return res.status(200).json({
                 id,
                 username,
-                profileImage
-            },
-            process.env.SECRET_KEY
-        );
-        return res.status(200).json({
-            id,
-            username,
-            profileImage,
-            token
-        });
+                profileImage,
+                token
+            });
+        } else {
+            return next({
+                status:400,
+                message: "Passwords don't match. Please try again!"
+            });
+        }
+        
     } catch (err) {
         //if validation fails
         if (err.code === 11000) {
-            err.message = "Sorry, that username and/or email is already in use";
+            err.keyPattern.email ?
+                err.message = "Sorry, that email is already in use." :
+                err.message = "Sorry, that username is already in use.";
         }
         return next({
             status: 400,
