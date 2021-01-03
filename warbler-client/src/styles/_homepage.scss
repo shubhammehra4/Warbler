@@ -1,47 +1,57 @@
 .message {
     display: flex;
     justify-content: center;
-    margin:0 1em;
+    margin:0 2%;
     flex-direction: column;
-    width: 50%;
-    border: 0.1em solid lightgray;
+    min-width: 50%;
+    border: 0.1rem solid lightgray;
     background-color: rgb(237, 237, 237);
     .header {
         background-color: white;
-        padding: 0.5em;
+        padding: 1%;
     }
 }
 
 .new-tweet {
+    overflow: hidden;
     background-color: white;
     display: flex;
     justify-content: center;
-    padding: 0.5em 0;
-    margin-bottom: 1em;
+    padding: 1% 0;
+    height: auto;
+    margin-bottom: 2%;
     border-top: 0.1em solid lightgray ;
     border-bottom: 0.1em solid lightgray ;
-    img {
-        height: 10%;
-        width: 10%;
-        border-radius: 100%;
-        margin: 0 0.5em;
+    & img {
+        vertical-align: middle;
+        width: 5em;
+        height: 5em;   
+        border-radius: 50%;
+        margin: 0 1%;
     }
     .tweet-content {
-        margin: 0 1em;
+        margin: 0 1%;
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        input {
+        textarea {
+            width: 90%;
+            height: 20px;
+            font-size: x-large;
+            max-height: 250px;
+            background: none;
             border: none;
-            border-bottom: 2px solid black;
-            margin-bottom: 2em;
+            margin-bottom: 4%;
+            resize: none;
+            &:focus {
+                border-bottom: 1px solid lightgray;
+            }
         }
         button {
-            max-width: 10em;
+            min-width: 10%;
             padding: 6px;
             font-weight: bold;
             color: white;
-            background-color: rgb(0, 183, 255);
             border-radius: 18px;
             margin:0px 5px;
         }

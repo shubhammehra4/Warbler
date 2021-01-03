@@ -1,4 +1,4 @@
-$blue: #1e4bd1;
+$blue: rgb(0, 183, 255);
 .home-aside {
     display:  flex;
     position: sticky;
@@ -7,18 +7,17 @@ $blue: #1e4bd1;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    margin: 0 1vh;
+    margin: 0 1%;
     .brand i {
         font-size: xx-large;
-        margin: 1em 0;
+        margin: 10% 0;
     }
     a {
         font-size: x-large;
         font-weight: bold;
-        text-decoration: none;
-        padding: 0.5em;
+        padding: 4%;
         border-radius: 1em;
-        margin: 0.2em 0;
+        margin: 5% 0;
         &:hover {
             color: $blue;
             background-color: rgba(0, 255, 255, 0.1);
@@ -34,22 +33,20 @@ $blue: #1e4bd1;
     }
     .user-pill {
         margin-top: auto;
-        margin-bottom: 1em;
+        margin-bottom: 5%;
         display: flex;
         justify-content: space-between;
         width: 100%;
-        flex-wrap: wrap;
         img {
             height: 4em;
             width: 4em;
             border-radius: 4em;
-            margin-right: 0.5em;
+            margin-right: 1%;
         }
-
         button {
-            margin: 1em 0;
+            // margin: 1% 0;
             margin-left: 0.5em;
-            padding: 0.5em;
+            // padding: 0.5em;
             border-radius: 1em;
         }
     }

@@ -10,7 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 90%;
+  font-size: 80%;
 }
 
 ul {
@@ -19,7 +19,7 @@ ul {
 
 button {
   border: none;
-  background: blue;
+  background: rgb(0, 183, 255);
   padding: 0;
   color: $white;
   box-shadow: none;
@@ -31,10 +31,18 @@ button {
 
 a {
   color:black;
+  text-decoration: none;
 }
 
 input {
   outline: none;
+  box-shadow: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+textarea {
   box-shadow: none;
   &:focus {
     outline: none;

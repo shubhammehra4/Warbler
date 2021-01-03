@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { postNewMessage } from '../store/actions/messages';
+import autosize from "autosize";
 
 class MessageForm extends Component {
     constructor(props) {
@@ -20,6 +21,10 @@ class MessageForm extends Component {
         this.props.postNewMessage(this.state.text);
         this.setState({text:''});
     };
+    componentDidMount() {
+        this.textarea.focus();
+        autosize(this.textarea);
+    }
     render() {
         const { profileImage, username } = this.props;
         const { text } = this.state;
@@ -28,13 +33,22 @@ class MessageForm extends Component {
                 <div className="new-tweet">
                     <img src={profileImage} alt={username} />
                     <div className="tweet-content">
-                        <input 
+                        {/* <input 
                             type="textarea" 
                             name="text"
                             placeholder="What's on your Mind?"
                             onChange={this.handleChange}
                             value={text}
-                        />
+                        /> */}
+                            <textarea 
+                            name="text" 
+                            ref={c => (this.textarea = c)}
+                            rows="1"
+                            placeholder="What's on your Mind?" 
+                            value={text}
+                            onChange={this.handleChange}
+                            maxLength="50"
+                            />
                         <button type="submit">Tweet</button>
                     </div>
                 </div>

@@ -29,7 +29,7 @@ const MainRouter = (props) => {
                 <Route exact path="/explore">
                     {currentUser.isAuthenticated ?
                         <div className="home-page">
-                            <Aside /> <NewsFeed />
+                            <Aside /> <span style={{width:"50%"}}> Explore </span> <NewsFeed />
                         </div>
                         :
                         <Redirect to="/signin" />
