@@ -1,21 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import MessageTimeLine from './MessageTimeLine';
+import MessageForm from '..//containers/MessageForm';
+import MessageList from '../containers/MessageList';
+// import MessageTimeLine from './MessageTimeLine';
 
 const Homepage = ({currentUser}) => {
-    if(!currentUser.isAuthenticated){
-        return (
-            <div className='home-hero'>
-                <h1>What's Happening?</h1>
-                <h4>New to Warbler?</h4>
-                <Link to='/signup' className='btn btn-primary'>Sign Up Here!</Link>
+    return (
+        <div className="message">
+            <div className="header">
+                <h2>Home</h2>
             </div>
-        );
-    } else {
-        return(
-            <MessageTimeLine profileImage={currentUser.user.profileImage} username={currentUser.user.username} />
-        );
-    }
+            <MessageForm profileImage={currentUser.user.profileImage} username={currentUser.user.username} />
+            <MessageList />
+        </div>
+    );
     
 };
 

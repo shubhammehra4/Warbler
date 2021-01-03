@@ -25,23 +25,18 @@ class MessageForm extends Component {
         const { text } = this.state;
         return (
             <form onSubmit={this.handleSubmit}>
-                <div className="new-message-form">
-                    <img src={profileImage} alt={username} height="100" width="100" className="user-image" />
-                    <div className="new-message-input">
-                    <input 
-                        className="form-control rounded-pill new-message" 
-                        type="textarea" 
-                        name="text"
-                        placeholder="What's on your Mind?"
-                        onChange={this.handleChange}
-                        value={text}
-                    />
-                    <hr></hr>
-                    <div className="post-message-options">
-                        <button className="float-right post-message" type="submit">Tweet</button>
+                <div className="new-tweet">
+                    <img src={profileImage} alt={username} />
+                    <div className="tweet-content">
+                        <input 
+                            type="textarea" 
+                            name="text"
+                            placeholder="What's on your Mind?"
+                            onChange={this.handleChange}
+                            value={text}
+                        />
+                        <button type="submit">Tweet</button>
                     </div>
-                    </div>
-                    
                 </div>
             </form>
         );
