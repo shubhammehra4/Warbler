@@ -73,20 +73,20 @@ i {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  height: 100vh;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 100vh;
   margin: 0 1%;
 }
 
@@ -101,11 +101,13 @@ i {
   padding: 4%;
   border-radius: 1em;
   margin: 5% 0;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 .home-aside a:hover {
   color: #00b7ff;
-  background-color: rgba(0, 255, 255, 0.1);
+  background-color: rgba(0, 255, 255, 0.08);
 }
 
 .home-aside .tweet-post {
@@ -149,38 +151,48 @@ i {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin: 0 2%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin: 0 2%;
   min-width: 50%;
-  border: 0.1rem solid lightgray;
+  border: 0.1rem solid #d3d3d3;
   background-color: #ededed;
 }
 
 .message .header {
-  background-color: white;
+  background-color: #ffffff;
   padding: 1%;
 }
 
 .new-tweet {
   overflow: hidden;
-  background-color: white;
+  background-color: #ffffff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   padding: 1% 0;
   height: auto;
   margin-bottom: 2%;
-  border-top: 0.1em solid lightgray;
-  border-bottom: 0.1em solid lightgray;
+  border-top: 0.1em solid #d3d3d3;
+  border-bottom: 0.1em solid #d3d3d3;
 }
 
 .new-tweet img {
@@ -199,6 +211,12 @@ i {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -217,20 +235,20 @@ i {
 }
 
 .new-tweet .tweet-content textarea:focus {
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid #d3d3d3;
 }
 
 .new-tweet .tweet-content button {
   min-width: 10%;
   padding: 6px;
   font-weight: bold;
-  color: white;
+  color: #ffffff;
   border-radius: 18px;
   margin: 0px 5px;
 }
 
 .tweet {
-  background-color: white;
+  background-color: #ffffff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -245,13 +263,13 @@ i {
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 1em;
-  border-top: 0.1em solid lightgray;
+  border-top: 0.1em solid #d3d3d3;
   -webkit-transition: opacity 0.25s ease-in;
   transition: opacity 0.25s ease-in;
 }
 
 .tweet:last-child {
-  border-bottom: 0.1em solid lightgray;
+  border-bottom: 0.1em solid #d3d3d3;
 }
 
 .tweet:hover {
@@ -263,9 +281,16 @@ i {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: space-between;
       -ms-flex-align: space-between;
           align-items: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 .tweet .tweet-item img {
@@ -307,6 +332,13 @@ i {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 .tweet .tweet-options i {
@@ -320,27 +352,27 @@ i {
 }
 
 .fa-trash-o:hover {
-  color: red;
-  background-color: rgba(255, 0, 0, 0.248);
+  color: #cc003d;
+  background-color: rgba(204, 0, 61, 0.1);
 }
 
 .fa-heart-o:hover {
-  color: red;
-  background-color: rgba(255, 0, 0, 0.241);
+  color: #cc003d;
+  background-color: rgba(204, 0, 61, 0.1);
 }
 
 .fa-comment-o:hover {
   color: #00b7ff;
-  background-color: rgba(0, 183, 255, 0.248);
+  background-color: rgba(0, 183, 255, 0.1);
 }
 
 .fa-paper-plane-o:hover {
-  color: lime;
-  background-color: rgba(115, 255, 115, 0.248);
+  color: #90ee90;
+  background-color: rgba(144, 238, 144, 0.1);
 }
 
 .fa-ellipsis-h:hover {
-  color: lawngreen;
+  color: #90ee90;
 }
 
 .input-group {

@@ -1,12 +1,21 @@
 $blue: rgb(0, 183, 255);
+$cyan:rgb(0,255,255);
+@mixin flexShortcut($content, $items, $direction) {
+    display: flex;
+    justify-content: $content;
+    align-items: $items;
+    flex-direction: $direction;
+}
+
 .home-aside {
-    display:  flex;
+    @include flexShortcut(flex-start, flex-start, column);
+    // display:  flex;
     position: sticky;
     top: 0;
     height: 100vh;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    // flex-direction: column;
+    // align-items: flex-start;
+    // justify-content: flex-start;
     margin: 0 1%;
     .brand i {
         font-size: xx-large;
@@ -18,9 +27,10 @@ $blue: rgb(0, 183, 255);
         padding: 4%;
         border-radius: 1em;
         margin: 5% 0;
+        transition: all 0.2s ease-in;
         &:hover {
             color: $blue;
-            background-color: rgba(0, 255, 255, 0.1);
+            background-color: change-color($color: $cyan, $alpha: 0.08);
         }
     }
     .tweet-post {
@@ -44,9 +54,7 @@ $blue: rgb(0, 183, 255);
             margin-right: 1%;
         }
         button {
-            // margin: 1% 0;
             margin-left: 0.5em;
-            // padding: 0.5em;
             border-radius: 1em;
         }
     }

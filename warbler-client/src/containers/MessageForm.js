@@ -31,7 +31,7 @@ class MessageForm extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="new-tweet">
-                    <img src={profileImage} alt={username} />
+                    <img src={profileImage || "https://abs.twimg.com/favicons/twitter.ico"} alt={username} />
                     <div className="tweet-content">
                         {/* <input 
                             type="textarea" 

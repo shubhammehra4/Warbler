@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const MessageItem = ({ date, profileImage, username, text, removeMessage, isCorrectUser }) => (
     <li className="tweet">
         <div className="tweet-item">
-            <img src={profileImage} alt={username} />
+            <img src={profileImage || "https://abs.twimg.com/favicons/twitter.ico"} alt={username} />
             <div className="tweet-area">
                 <Link to="/">*NAME*</Link> &nbsp;
                 <Link to="/" className="text-muted">@{username} &nbsp;</Link>

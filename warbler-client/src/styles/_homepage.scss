@@ -1,39 +1,59 @@
-.message {
+$lightgray: #d3d3d3;
+$lightestgray: rgb(237, 237, 237);
+$white: #ffffff;
+$heart: rgb(204, 0, 61);
+$comment: rgb(0, 183, 255);
+$share: #90ee90;
+@mixin flexShortcut($content, $items, $direction) {
     display: flex;
-    justify-content: center;
-    margin:0 2%;
-    flex-direction: column;
+    justify-content: $content;
+    align-items: $items;
+    flex-direction: $direction;
+}
+
+.message {
+    @include flexShortcut(flex-start, stretch, column);
+    // display: flex;
+    // justify-content: center;
+    margin: 0 2%;
+    // flex-direction: column;
     min-width: 50%;
-    border: 0.1rem solid lightgray;
-    background-color: rgb(237, 237, 237);
+    border: 0.1rem solid $lightgray;
+    background-color: $lightestgray;
+
     .header {
-        background-color: white;
+        background-color: $white;
         padding: 1%;
     }
 }
 
 .new-tweet {
     overflow: hidden;
-    background-color: white;
-    display: flex;
-    justify-content: center;
+    background-color: $white;
+    @include flexShortcut(center, stretch, row);
+    // display: flex;
+    // justify-content: center;
     padding: 1% 0;
     height: auto;
     margin-bottom: 2%;
-    border-top: 0.1em solid lightgray ;
-    border-bottom: 0.1em solid lightgray ;
+    border-top: 0.1em solid $lightgray;
+    border-bottom: 0.1em solid $lightgray;
+
     & img {
         vertical-align: middle;
         width: 5em;
-        height: 5em;   
+        height: 5em;
         border-radius: 50%;
         margin: 0 1%;
     }
+
     .tweet-content {
         margin: 0 1%;
         flex-grow: 1;
-        display: flex;
-        flex-direction: column;
+        // display: flex;
+        // flex-direction: column;
+        @include flexShortcut(center, stretch, column);
+
         textarea {
             width: 90%;
             height: 20px;
@@ -43,67 +63,83 @@
             border: none;
             margin-bottom: 4%;
             resize: none;
+
             &:focus {
-                border-bottom: 1px solid lightgray;
+                border-bottom: 1px solid $lightgray;
             }
         }
+
         button {
             min-width: 10%;
             padding: 6px;
             font-weight: bold;
-            color: white;
+            color: $white;
             border-radius: 18px;
-            margin:0px 5px;
+            margin: 0px 5px;
         }
     }
 }
 
 .tweet {
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    background-color: $white;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-direction: column;
+    @include flexShortcut(center, center, column);
     padding: 1em;
-    border-top: 0.1em solid lightgray;
-    &:last-child{
-        border-bottom: 0.1em solid lightgray;
+    border-top: 0.1em solid $lightgray;
+
+    &:last-child {
+        border-bottom: 0.1em solid $lightgray;
     }
+
     transition: opacity 0.25s ease-in;
+
     &:hover {
         opacity: 0.9;
     }
-    .tweet-item {
+
+    #{&}-item {
         width: 100%;
-        display: flex;
-        align-items: space-between;
+        // display: flex;
+        // align-items: space-between;
+        @include flexShortcut(center, space-between, row);
+
         img {
             height: 5em;
             width: 5em;
             border-radius: 5em;
             transition: all 0.2 ease-in;
             margin-right: 0.5em;
+
             &:hover {
                 opacity: 0.8;
                 filter: grayscale(20%);
             }
         }
+
         .tweet-area {
             flex-grow: 1;
             margin-right: 0.5em;
+
             a:not(.text-muted) {
-                font-weight: bold;   text-decoration: none;
+                font-weight: bold;
+                text-decoration: none;
             }
+
             p {
                 width: 90%;
             }
         }
-    } 
-    .tweet-options {
+    }
+
+    #{&}-options {
         margin-top: 0.5em;
         width: 70%;
-        display: flex;
-        justify-content: space-around;
+        // display: flex;
+        // justify-content: space-around;
+        @include flexShortcut(space-around, stretch, row); 
         i {
             padding: 0.3em;
             border-radius: 1em;
@@ -116,25 +152,26 @@
 }
 
 .fa-trash-o:hover {
-    color: red;
-    background-color: rgba(255, 0, 0, 0.248);
+    color: $heart;
+    background-color: change-color($color: $heart, $alpha: 0.1);
 }
 
 .fa-heart-o:hover {
-    color: red;
-    background-color: rgba(255, 0, 0, 0.241);
+    color: $heart;
+    background-color: change-color($color: $heart, $alpha: 0.1);
 }
 
 .fa-comment-o:hover {
-    color: rgb(0, 183, 255);
-    background-color: rgba(0, 183, 255, 0.248);
+    color: $comment;
+    background-color: change-color($color: $comment, $alpha: 0.1);
 }
 
 .fa-paper-plane-o:hover {
-    color: lime;
-    background-color: rgba(115, 255, 115, 0.248);
+    color: $share;
+    background-color: change-color($color: $share, $alpha: 0.1);
+    ;
 }
 
 .fa-ellipsis-h:hover {
-    color: lawngreen
+    color: $share;
 }
