@@ -7,7 +7,6 @@ const messageSchema = new mongoose.Schema({
         required: true,
         maxlength: 200
     },
-    image: String,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
@@ -15,7 +14,12 @@ const messageSchema = new mongoose.Schema({
     likes: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
-    }]
+    }],
+    likesNumber: {
+        type: Number,
+        default: 0,
+        min:0
+    }
 },{
     timestamps: true,
 });

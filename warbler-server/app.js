@@ -24,7 +24,9 @@ app.get("/api/messages", loginRequired, async function (req, res, next) {
     try {
         let messages = await db.Message.find()
                 .sort({ createdAt: "desc" })
-                .populate("user", { username: true, profileImage: true });
+                .populate("user", { username: true, profileImage: true })
+                .select('text user createdAt likesNumber');
+        // let {id, text, likesNumber} = 
         return res.status(200).json(messages);
     } catch (err) {
         return next(err);
