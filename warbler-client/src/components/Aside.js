@@ -12,23 +12,23 @@ class Aside extends Component {
         const {username, profileImage} = this.props.currentUser;
         return (
             <aside className="home-aside">
-                <spam className="brand">
-                    <i class="fa fa-twitter"></i>
-                </spam>
+                <span className="brand">
+                    <i className="fa fa-twitter"></i>
+                </span>
                 <NavLink exact to="/home" activeClassName="selected">
-                    <i class="fa fa-home"></i>&nbsp;
+                    <i className="fa fa-home"></i>&nbsp;
                     <span className="nav-text">Home</span>
                 </NavLink>
                 <NavLink exact to="/explore" activeClassName="selected">
-                    <i class="fa fa-hashtag"></i>&nbsp;
+                    <i className="fa fa-hashtag"></i>&nbsp;
                     <span className="nav-text">Explore</span>
                 </NavLink>
                 <NavLink exact to="/messages" activeClassName="selected">
-                    <i class="fa fa-envelope-o"></i>&nbsp;
+                    <i className="fa fa-envelope-o"></i>&nbsp;
                     <span className="nav-text">Messages</span>
                 </NavLink>
                 <NavLink exact to="/profile" activeClassName="selected">
-                    <i class="fa fa-user"></i>&nbsp;
+                    <i className="fa fa-user"></i>&nbsp;
                     <span className="nav-text">Profile</span>
                 </NavLink>
                 <button className="tweet-post" type="button">Tweet</button>

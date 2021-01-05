@@ -1,4 +1,4 @@
-import { LOAD_MESSAGES, REMOVE_MESSAGES, NEW_MESSAGE } from "../actionTypes";
+import { LOAD_MESSAGES, REMOVE_MESSAGES, NEW_MESSAGE, LIKE_MESSAGE } from "../actionTypes";
 
 const messages = (state = [], action) => {
     switch (action.type) {
@@ -8,6 +8,13 @@ const messages = (state = [], action) => {
             return [action.message, ...state];
         case REMOVE_MESSAGES:
             return state.filter(messages => messages._id !== action.id);
+        case LIKE_MESSAGE:
+            return state.map(messages => {
+                if(messages._id === action.id) {
+                    messages.likesNumber+=1
+                }
+                return messages;
+            });
         default:
             return state;
     }
