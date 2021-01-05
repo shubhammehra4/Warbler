@@ -12,7 +12,7 @@ exports.createMessage = async function (req, res, next) {
         foundUser.messages.push(message.id);
         await foundUser.save();
         
-        let foundMessage = await db.Message.findById(message._id).populate("user", {
+        let foundMessage = await db.Message.findById(message._id).lean().populate("user", {
             username: true,
             profileImage: true
         });
@@ -71,7 +71,7 @@ exports.unlikeMessage = async function (req, res, next) {
 
 exports.getMessage = async function (req, res, next)  {
     try {
-        let message = await db.Message.findById(req.params.message_id);
+        let message = await db.Message.findById(req.params.message_id).lean();
         
         return res.status(200).json(message);
     } catch (err) {

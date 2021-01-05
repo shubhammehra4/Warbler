@@ -3,9 +3,7 @@ const db = require("../models"),
 
 exports.signin = async function (req, res, next) {
     try {
-        let user = await db.User.findOne({
-            email: req.body.email
-        });
+        let user = await db.User.findOne({ email: req.body.email});
         let { id, username, profileImage } = user;
         let isMatch = await user.comparePassword(req.body.password);
         if (isMatch) {
@@ -40,7 +38,7 @@ exports.signin = async function (req, res, next) {
 exports.signup = async function (req, res, next) {
     try {
         if (req.body.password === req.body.confirmpassword) {
-            let user = await db.User.create(req.body);
+            let user = await db.User.create(req.body).lean();
             let { id, username, profileImage } = user;
             let token = jwt.sign({
                     id,
