@@ -34,7 +34,7 @@ $share: #90ee90;
     // display: flex;
     // justify-content: center;
     padding: 1% 0;
-    height: auto;
+    // height: auto;
     margin-bottom: 2%;
     border-top: 0.1em solid $lightgray;
     border-bottom: 0.1em solid $lightgray;
@@ -75,7 +75,7 @@ $share: #90ee90;
             font-weight: bold;
             color: $white;
             border-radius: 18px;
-            margin: 0px 5px;
+            margin: 0 5px;
         }
     }
 }
@@ -130,6 +130,8 @@ $share: #90ee90;
 
             p {
                 width: 90%;
+                white-space: pre-wrap;
+                overflow-wrap: break-word;
             }
         }
     }

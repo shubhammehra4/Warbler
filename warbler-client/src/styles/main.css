@@ -189,7 +189,6 @@ i {
       -ms-flex-direction: row;
           flex-direction: row;
   padding: 1% 0;
-  height: auto;
   margin-bottom: 2%;
   border-top: 0.1em solid #d3d3d3;
   border-bottom: 0.1em solid #d3d3d3;
@@ -244,7 +243,7 @@ i {
   font-weight: bold;
   color: #ffffff;
   border-radius: 18px;
-  margin: 0px 5px;
+  margin: 0 5px;
 }
 
 .tweet {
@@ -322,6 +321,8 @@ i {
 
 .tweet .tweet-item .tweet-area p {
   width: 90%;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 
 .tweet .tweet-options {

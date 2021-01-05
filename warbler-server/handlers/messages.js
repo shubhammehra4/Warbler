@@ -15,7 +15,7 @@ exports.createMessage = async function (req, res, next) {
         let foundMessage = await db.Message.findById(message._id).lean().populate("user", {
             username: true,
             profileImage: true
-        });
+        }).select('text user createdAt likesNumber');
         
         return res.status(200).json(foundMessage);
     } catch (err) {
