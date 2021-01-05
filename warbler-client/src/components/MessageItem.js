@@ -2,7 +2,7 @@ import React from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 
-const MessageItem = ({ date, profileImage, username, text, removeMessage, isCorrectUser, likes, likeMessage }) => (
+const MessageItem = ({ date, profileImage, username, text, removeMessage, isCorrectUser, likes, likeMessage, unlikeMessage }) => (
     <li className="tweet">
         <div className="tweet-item">
             <img src={profileImage || "https://abs.twimg.com/favicons/twitter.ico"} alt={username} />
