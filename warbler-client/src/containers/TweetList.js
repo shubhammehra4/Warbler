@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { fetchMessages, removeMessage, likeRequest, unlikeRequest } from '../store/actions/messages';
-import MessageItem from '../components/MessageItem';
+import TweetItem from '../components/TweetItem';
 
 
-class MessageList extends Component {
+class TweetList extends Component {
     componentDidMount() {
         this.props.fetchMessages();
     }
     render() {
         const { messages, removeMessage, currentUser, likeRequest, unlikeRequest } = this.props;
         let messageList = messages.map(m => (
-            <MessageItem 
+            <TweetItem 
                 key={m._id} 
                 date={m.createdAt} 
                 text={m.text} 
@@ -25,8 +25,8 @@ class MessageList extends Component {
              />
         ))
         return (
-            <div className="container-fluid">
-                <ul id="messages">
+            <div className="tweetList">
+                <ul id="tweets">
                     {messageList}
                 </ul>
             </div>
@@ -41,4 +41,4 @@ function mapStateToProps(state) {
     };
 };
 
-export default connect(mapStateToProps, { fetchMessages, removeMessage, likeRequest, unlikeRequest })(MessageList);
+export default connect(mapStateToProps, { fetchMessages, removeMessage, likeRequest, unlikeRequest })(TweetList);

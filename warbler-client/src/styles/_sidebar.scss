@@ -1,0 +1,81 @@
+
+@mixin flexShortcut($content, $items, $direction) {
+    display: flex;
+    justify-content: $content;
+    align-items: $items;
+    flex-direction: $direction;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    margin: 0 1%;
+    flex: 0.2;
+    flex-direction: column;
+    display: flex;
+}
+
+.brand {
+    margin-top: 0.1rem;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    color: $twitter-blue;
+    padding: 1rem;
+    border-radius: 5rem;
+    &:hover {
+        background-color: $hoverColor;
+        transition: color 200ms ease-out;
+    }
+}
+
+.sidebarOption {
+    display: flex;
+    align-items: center;
+    font-size: x-large;
+    a {
+        padding: 1rem;
+        border-radius: 3rem;
+        &:hover {
+            background-color: $hoverColor;
+            transition: color 200ms ease-out;
+            color: $twitter-blue;
+        }
+    }
+    i {
+        &::before {
+            margin-right: 1rem;
+        }
+    }
+}
+.selected {
+    color: $twitter-blue;
+}
+
+.sidebar__tweet__post {
+    margin: 1rem 0;
+    font-size: large;
+    font-weight: bold;
+    padding: 1rem 5rem;
+    border-radius: 2rem;
+}
+
+.sidebar__user__pill {
+    margin-top: auto;
+    margin-bottom: 1rem;
+    display: flex;
+    border-radius: 5rem;
+    padding: 1rem;
+    img {
+        height: 2rem;
+        width: 2rem;
+        border-radius: 4rem;
+        margin-right: 0.2rem;
+    }
+    i {
+        margin: auto 0.2rem auto auto ;
+    }
+    &:hover {
+        background-color: $hoverColor;   
+    }
+}   

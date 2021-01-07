@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    fullName : {
+    name: {
         type: String
     },
     password: {
@@ -29,7 +29,23 @@ const userSchema = new mongoose.Schema({
     likedMessages: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Message"
-    }]
+    }],
+    following: [
+        {
+            user: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User'
+            }
+        }
+    ],
+    followers: [
+        {
+            user: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User'
+            }
+        }
+    ]
 }, {
     timestamps: true
 });

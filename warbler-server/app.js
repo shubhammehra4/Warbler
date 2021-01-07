@@ -13,18 +13,20 @@ app.use(bodyParser.json());
 
 //* Routes
 const authRoutes = require('./routes/auth'),
-    messageRoutes = require('./routes/messages');
+    messageRoutes = require('./routes/messages'),
+    userRoutes = require('./routes/users');
 
 const { loginRequired, ensureCorrectUser } = require('./middlewares/auth');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users/:id/messages', loginRequired, ensureCorrectUser, messageRoutes);
+app.use('/api/user/:id/', loginRequired, userRoutes);
 
 app.get("/api/messages", loginRequired, async function (req, res, next) {
     try {
         let messages = await db.Message.find()
                 .lean()
-                .sort({ createdAt: "desc" })
+                .sort({ createdAt: -1 })
                 .populate("user", { username: true, profileImage: true })
                 .select('text user createdAt likesNumber');
                 
