@@ -1,7 +1,6 @@
 import React from 'react';
 import formatDistance from 'date-fns/formatDistance';
 import { Link } from 'react-router-dom';
-// import {  } from 'date-fns';
 
 const TweetItem = ({ date, profileImage, username, text, removeMessage, isCorrectUser, likes, likeMessage, unlikeMessage }) => (
     <li className="tweet">
