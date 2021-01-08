@@ -15,7 +15,6 @@ function TweetBox({ profileImage, username, postNewMessage }) {
         e.preventDefault();
         postNewMessage(text);
         setText('');
-        console.log("clicked");
     };
 
     return (
@@ -28,9 +27,8 @@ function TweetBox({ profileImage, username, postNewMessage }) {
                             placeholder="What's on your Mind?" 
                             value={ text }
                             onChange={ handleChange }
-                            minLength="1"
-                            maxLength="100"
-                            maxRows="15"
+                            maxLength={ 150 }
+                            maxRows={ 15 }
                         />
                         <button className="tweet__post" disabled={ !text } type="submit">Tweet</button>
                     </div>

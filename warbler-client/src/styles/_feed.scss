@@ -1,22 +1,15 @@
 .feed {
     min-width: fit-content;
     flex: 0.5;
-    overflow-y: scroll;
+    
     background-color: $lightgray;
 }
 
-.feed::-webkit-scrollbar {
-    display: none;
-}
-.feed {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
 
 .feed__header {
-    position: sticky;
+    position:sticky;
     top: 0;
-    z-index: 100;
+    z-index: 100000;
     background-color: $white;
     border: 0.1rem $lightestgray solid;
     padding: 0.5rem;
@@ -57,6 +50,7 @@
             }
         }
     }
+
     button {
         margin: 1rem 0;
         font-size: large;
@@ -71,25 +65,29 @@
     margin-top: 1rem;
     background-color: $white;
     border: 0.1rem $lightestgray solid;
-    padding: 0.5rem;
 }
+
 .tweet {
     display: flex;
     border-bottom: 0.1rem $lightestgray solid;
     padding: 0.5rem;
+    &:hover {
+        background-color: $gray-white;
+    }
     img {
         vertical-align: middle;
-        width: 3rem;
-        height: 3rem;
+        width: 3.5rem;
+        height: 3.5rem;
         border-radius: 4rem;
         margin-right: 1rem;
+
         &:hover {
             filter: grayscale(0.2);
         }
     }
 }
 
-.tweet__area{
+.tweet__area {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -97,20 +95,25 @@
 
 .tweet__body {
     display: flex;
+
     a:not(.text-muted) {
         font-weight: 700;
+
         &:hover {
             text-decoration: underline;
         }
     }
+
     .text-muted {
         font-size: 0.8rem;
     }
+
     span {
         margin-left: auto;
         margin-right: 0.5rem;
     }
-    p{
+
+    p {
         padding-top: 0.5rem;
         font-size: 1.1rem;
         white-space: pre-wrap;
@@ -121,6 +124,7 @@
     color: $twitter-blue;
     font-style: italic;
     cursor: pointer;
+
     &:hover {
         text-decoration: underline;
     }
@@ -131,12 +135,16 @@
     padding: 0.5rem;
     display: flex;
     justify-content: space-between;
+
     i {
         padding: 0.3em;
         border-radius: 1em;
     }
 }
-.fas,.far,.fab {
+
+.fas,
+.far,
+.fab {
     transition: background-color 250ms ease-in-out;
 }
 
@@ -163,4 +171,48 @@
 
 .fa-ellipsis-v:hover {
     color: $share;
+}
+
+//DROPDOWN 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    position: absolute;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 101;
+    border-radius: 1rem;
+    transition :visibility 0s ease-in 0.3s;
+}
+
+.dropdown:hover .dropdown-content {
+    visibility: visible;
+}
+
+.user__dropdown {
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    button {
+        margin: 1rem 0;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        margin-left: 5rem;
+    }
+}
+
+.user__dropdown__options {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    padding: 0;
 }

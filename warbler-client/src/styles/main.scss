@@ -3,6 +3,7 @@ $white: #fff;
 $gray: #808080;
 $lightgray: #d3d3d348;
 $lightestgray: #ededed;
+$gray-white: #ededed71;
 $heart: #cc003d;
 $share: #90ee90;
 $hoverColor:#1da0f218;
@@ -85,6 +86,16 @@ i {
     margin-right: auto;
     height: 100vh;
     padding: 0 10px;
+    overflow-y: scroll;
+
+}
+.app::-webkit-scrollbar {
+    display: none;
+}
+
+.app {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 @import './sidebar';

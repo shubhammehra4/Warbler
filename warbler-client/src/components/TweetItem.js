@@ -1,30 +1,34 @@
 import React from 'react';
 import formatDistance from 'date-fns/formatDistance';
 import { Link } from 'react-router-dom';
-import ReactHashtag from "react-hashtag";
+import { ReactTagify } from "react-tagify";
+import UserDropdown from './UserDropdown';
+
+const tagStyle = {
+    cursor: "pointer",
+    color: "#1da1f2"
+}
 
 const TweetItem = ({ date, profileImage, username, text, removeMessage, isCorrectUser, likes, likeMessage, unlikeMessage }) => (
     <li className="tweet">
-        <img src={profileImage || "https://abs.twimg.com/favicons/twitter.ico"} alt={username} />
-    
+        <span className ="dropdown">
+            <img src={profileImage || "https://abs.twimg.com/favicons/twitter.ico"} alt={username} />
+            <UserDropdown profileImage={profileImage} username={username} />
+        </span>
         <div className="tweet__area">
             <div className="tweet__body">
-                <div>
+                <section>
                     <Link to="/">{ username }</Link> &nbsp;
                     <Link to="/" className="text-muted">@{ username } &nbsp;</Link>
                     <span className="text-muted">
                         {formatDistance(new Date(date), new Date())}
                     </span>
-                    {/* <p className="tweet__text">{text}</p> */}
                     <p>
-                        <ReactHashtag
-                        renderHashtag={(hashtagValue) => (
-                            <span className="tweet--hashtag">{hashtagValue}</span>
-                        )}>
-                        { text }
-                        </ReactHashtag>
+                        <ReactTagify className="hello" tagStyle={tagStyle} mentionStyle={tagStyle} detectLinks>
+                            { text }
+                        </ReactTagify>
                     </p>
-                </div>
+                </section>
             
                 <span>
                     <i className="fas fa-ellipsis-v" aria-hidden="true"></i>
