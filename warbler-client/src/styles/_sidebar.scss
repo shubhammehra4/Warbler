@@ -10,10 +10,10 @@
     position: sticky;
     top: 0;
     height: 100vh;
-    margin: 0 1%;
+    margin: 0 0.5rem;
     flex: 0.2;
-    flex-direction: column;
     display: flex;
+    flex-direction: column;
 }
 
 .brand {
@@ -58,6 +58,10 @@
     font-weight: bold;
     padding: 1rem 5rem;
     border-radius: 2rem;
+    transition: all 250ms ease-out;
+    &:hover {
+        background-color: change-color($color: $twitter-blue, $saturation: 70%);
+    }
 }
 
 .sidebar__user__pill {

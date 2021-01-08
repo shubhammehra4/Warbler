@@ -1,6 +1,7 @@
 import React from 'react';
 import formatDistance from 'date-fns/formatDistance';
 import { Link } from 'react-router-dom';
+import ReactHashtag from "react-hashtag";
 
 const TweetItem = ({ date, profileImage, username, text, removeMessage, isCorrectUser, likes, likeMessage, unlikeMessage }) => (
     <li className="tweet">
@@ -14,19 +15,27 @@ const TweetItem = ({ date, profileImage, username, text, removeMessage, isCorrec
                     <span className="text-muted">
                         {formatDistance(new Date(date), new Date())}
                     </span>
-                    <p className="tweet__text">{text}</p>
+                    {/* <p className="tweet__text">{text}</p> */}
+                    <p>
+                        <ReactHashtag
+                        renderHashtag={(hashtagValue) => (
+                            <span className="tweet--hashtag">{hashtagValue}</span>
+                        )}>
+                        { text }
+                        </ReactHashtag>
+                    </p>
                 </div>
             
                 <span>
-                    <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
+                    <i className="fas fa-ellipsis-v" aria-hidden="true"></i>
                 </span>
             </div>
             <div className="tweet__options">
-                <i className="fa fa-comment-o" aria-hidden="true"></i>
-                <i className="fa fa-paper-plane-o" aria-hidden="true"></i>
-                <i className="fa fa-heart-o" onClick={ likeMessage } aria-hidden="true">&nbsp;{likes}</i> 
+                <i className="far fa-comment" aria-hidden="true"></i>
+                <i className="fas fa-share" aria-hidden="true"></i>
+                <i className="far fa-heart" onClick={ likeMessage } aria-hidden="true">&nbsp;{likes}</i> 
                 { isCorrectUser &&
-                    <i className="fa fa-trash-o" onClick={ removeMessage } aria-hidden="true"></i>
+                    <i className="fas fa-trash" onClick={ removeMessage } aria-hidden="true"></i>
                 }
             </div>
         </div>

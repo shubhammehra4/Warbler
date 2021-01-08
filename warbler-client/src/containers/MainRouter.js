@@ -14,7 +14,7 @@ const MainRouter = (props) => {
     return (
         <Switch >
             <Route exact path="/">
-                {currentUser.isAuthenticated ? <Redirect to="/home" /> : <Redirect to="/signup" />}
+                {currentUser.isAuthenticated ? <Redirect to="/home" /> : <Redirect to="/auth" />}
             </Route>
             <Route exact path="/home" >
                 {currentUser.isAuthenticated ?
@@ -22,7 +22,7 @@ const MainRouter = (props) => {
                         <SideBar /> <Feed currentUser={currentUser} {...props} /> <NewsFeed />
                     </div>
                     :
-                    <Redirect to="/signin" />
+                    <Redirect to="/auth" />
                 }
             </Route>
             <Route exact path="/explore">
@@ -31,10 +31,10 @@ const MainRouter = (props) => {
                         <SideBar /> <span style={{width:"50%"}}> Explore </span> <NewsFeed />
                     </div>
                     :
-                    <Redirect to="/signin" />
+                    <Redirect to="/auth" />
                 }
             </Route>
-            <Route exact path='/signin'>
+            {/* <Route exact path='/signin'>
             { currentUser.isAuthenticated ? <Redirect to="/home" /> 
                     :   <AuthForm 
                             removeError={removeError} 
@@ -44,7 +44,7 @@ const MainRouter = (props) => {
                             heading="Welcome Back." 
                         />
                 }
-            </Route>
+            </Route> */}
             {/* render={props => {
                 return (
                     <AuthForm 
@@ -55,16 +55,14 @@ const MainRouter = (props) => {
                     />
                 );
             }} */}
-            <Route exact path='/signup'>
+            <Route exact path='/auth'>
             { currentUser.isAuthenticated ? <Redirect to="/home" /> 
-                    :   <AuthForm 
-                            signup 
-                            removeError={removeError} 
-                            errors={errors} 
-                            onAuth={authUser} 
-                            buttonText="Sign Up" 
-                            heading="Join Warbler Today." 
-                        />
+                    :   
+                    <AuthForm 
+                        removeError={removeError} 
+                        errors={errors} 
+                        onAuth={authUser} 
+                    />
                 }
             </Route>
         </Switch>

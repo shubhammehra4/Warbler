@@ -14,12 +14,12 @@ function SideBar (props) {
         return (
             <aside className="sidebar">
                 {/* TWITTER ICON */}
-                <i className="fa fa-twitter brand"></i>
+                <i className="fab fa-twitter brand"></i>
                 
-                <SideBarOption route="/home" icon="fa fa-home" text="Home" />
-                <SideBarOption route="/explore" icon="fa fa-hashtag" text="Explore" />
-                <SideBarOption route="/notifications" icon="fa fa-bell" text="Notifications" />                
-                <SideBarOption route="/messages" icon="fa fa-envelope-o" text="Messages" />
+                <SideBarOption route="/home" icon="fas fa-home" text="Home" />
+                <SideBarOption route="/explore" icon="fas fa-hashtag" text="Explore" />
+                <SideBarOption route="/notifications" icon="far fa-bell" text="Notifications" />                
+                <SideBarOption route="/messages" icon="far fa-envelope" text="Messages" />
                 {/* <NavLink exact to="/home" activeClassName="selected">
                     <i className="fa fa-home"></i>&nbsp;
                     <span className="nav-text">Home</span>
@@ -43,7 +43,7 @@ function SideBar (props) {
                         <h4>Shubham Mehra</h4>
                         <h6 className="text-muted underlined">@{ username }</h6>
                     </div>
-                    <i className="fa fa-ellipsis-h"></i>
+                    <i className="fas fa-ellipsis-v" onClick={ logout }></i>
                     {/* <button onClick={ logout }>Log Out</button> */}
                 </div>
             </aside>

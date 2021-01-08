@@ -83,6 +83,9 @@
         height: 3rem;
         border-radius: 4rem;
         margin-right: 1rem;
+        &:hover {
+            filter: grayscale(0.2);
+        }
     }
 }
 
@@ -100,6 +103,9 @@
             text-decoration: underline;
         }
     }
+    .text-muted {
+        font-size: 0.8rem;
+    }
     span {
         margin-left: auto;
         margin-right: 0.5rem;
@@ -107,8 +113,19 @@
     p{
         padding-top: 0.5rem;
         font-size: 1.1rem;
+        white-space: pre-wrap;
     }
 }
+
+.tweet--hashtag {
+    color: $twitter-blue;
+    font-style: italic;
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 .tweet__options {
     margin-top: 1rem;
     padding: 0.5rem;
@@ -119,31 +136,31 @@
         border-radius: 1em;
     }
 }
-.fa {
-    transition: background-color 0.2s ease-in;
+.fas,.far,.fab {
+    transition: background-color 250ms ease-in-out;
 }
 
-.fa-trash-o:hover {
+.fa-trash:hover {
     color: $heart;
     background-color: change-color($color: $heart, $alpha: 0.1);
 }
 
-.fa-heart-o:hover {
+.fa-heart:hover {
     color: $heart;
     background-color: change-color($color: $heart, $alpha: 0.1);
 }
 
-.fa-comment-o:hover {
+.fa-comment:hover {
     color: $twitter-blue;
     background-color: change-color($color: $twitter-blue, $alpha: 0.1);
 }
 
-.fa-paper-plane-o:hover {
+.fa-share:hover {
     color: $share;
     background-color: change-color($color: $share, $alpha: 0.1);
     ;
 }
 
-.fa-ellipsis-h:hover {
+.fa-ellipsis-v:hover {
     color: $share;
 }

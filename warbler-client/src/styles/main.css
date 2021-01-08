@@ -90,17 +90,17 @@ i {
   position: sticky;
   top: 0;
   height: 100vh;
-  margin: 0 1%;
+  margin: 0 0.5rem;
   -webkit-box-flex: 0.2;
       -ms-flex: 0.2;
           flex: 0.2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .brand {
@@ -154,6 +154,12 @@ i {
   font-weight: bold;
   padding: 1rem 5rem;
   border-radius: 2rem;
+  -webkit-transition: all 250ms ease-out;
+  transition: all 250ms ease-out;
+}
+
+.sidebar__tweet__post:hover {
+  background-color: #349cdb;
 }
 
 .sidebar__user__pill {
@@ -307,6 +313,11 @@ i {
   margin-right: 1rem;
 }
 
+.tweet img:hover {
+  -webkit-filter: grayscale(0.2);
+          filter: grayscale(0.2);
+}
+
 .tweet__area {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -334,6 +345,10 @@ i {
   text-decoration: underline;
 }
 
+.tweet__body .text-muted {
+  font-size: 0.8rem;
+}
+
 .tweet__body span {
   margin-left: auto;
   margin-right: 0.5rem;
@@ -342,6 +357,17 @@ i {
 .tweet__body p {
   padding-top: 0.5rem;
   font-size: 1.1rem;
+  white-space: pre-wrap;
+}
+
+.tweet--hashtag {
+  color: #1da1f2;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.tweet--hashtag:hover {
+  text-decoration: underline;
 }
 
 .tweet__options {
@@ -360,32 +386,32 @@ i {
   border-radius: 1em;
 }
 
-.fa {
-  -webkit-transition: background-color 0.2s ease-in;
-  transition: background-color 0.2s ease-in;
+.fas, .far, .fab {
+  -webkit-transition: background-color 250ms ease-in-out;
+  transition: background-color 250ms ease-in-out;
 }
 
-.fa-trash-o:hover {
+.fa-trash:hover {
   color: #cc003d;
   background-color: rgba(204, 0, 61, 0.1);
 }
 
-.fa-heart-o:hover {
+.fa-heart:hover {
   color: #cc003d;
   background-color: rgba(204, 0, 61, 0.1);
 }
 
-.fa-comment-o:hover {
+.fa-comment:hover {
   color: #1da1f2;
   background-color: rgba(29, 161, 242, 0.1);
 }
 
-.fa-paper-plane-o:hover {
+.fa-share:hover {
   color: #90ee90;
   background-color: rgba(144, 238, 144, 0.1);
 }
 
-.fa-ellipsis-h:hover {
+.fa-ellipsis-v:hover {
   color: #90ee90;
 }
 
@@ -393,83 +419,4 @@ i {
   -webkit-box-flex: 0.3;
       -ms-flex: 0.3;
           flex: 0.3;
-}
-
-.input-group {
-  margin-bottom: 1.5rem;
-  position: relative;
-}
-
-.input-underlined input {
-  background: #ffffff;
-  border: none;
-  border-bottom: 0.125rem solid rgba(19, 19, 21, 0.6);
-  width: 100%;
-  height: 2rem;
-  font-size: 1.0625rem;
-  padding-left: 0.875rem;
-  line-height: 147.6%;
-  padding-top: 0.825rem;
-  padding-bottom: 0.5rem;
-}
-
-.input-underlined input:hover {
-  background: rgba(73, 133, 224, 0.12);
-  border-color: #121212;
-}
-
-.input-underlined input:focus + .input-label,
-.input-underlined input:valid + .input-label {
-  top: 0;
-  font-size: 0.9375rem;
-  margin-bottom: 32px;
-}
-
-.input-underlined i {
-  position: absolute;
-  top: 0.9375rem;
-  right: 0.875rem;
-  color: rgba(19, 19, 21, 0.6);
-}
-
-.input-underlined .input-label {
-  position: absolute;
-  top: 0.9375rem;
-  left: 0.875rem;
-  line-height: 147.6%;
-  color: rgba(19, 19, 21, 0.6);
-  -webkit-transition: top .2s;
-  transition: top .2s;
-}
-
-.input-underlined .input-helper {
-  font-size: 0.9375rem;
-  color: rgba(19, 19, 21, 0.6);
-  letter-spacing: 0.0275rem;
-  margin: 0.125rem 0.875rem;
-}
-
-.input-underlined:not(.input-danger) input:focus {
-  border-color: #1e4bd1;
-}
-
-.input-underlined:not(.input-danger) input:focus .input-underlined i {
-  color: #121212;
-}
-
-.input-underlined:not(.input-danger) input:focus + .input-label {
-  color: #1e4bd1;
-}
-
-.input-danger input {
-  border-color: #b50706;
-}
-
-.input-danger i {
-  color: #b50706;
-}
-
-.input-danger .input-label,
-.input-danger .input-helper {
-  color: #b50706;
 }
