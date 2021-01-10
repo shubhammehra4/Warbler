@@ -24,13 +24,25 @@ app.use('/api/user/:id/', loginRequired, userRoutes);
 
 app.get("/api/messages", loginRequired, async function (req, res, next) {
     try {
-        let messages = await db.Message.find()
+        const page = parseInt(req.query.page);
+        const limit = 20;
+        const startIndex = (page-1) * limit;
+        const endIndex = page * limit;
+        const results = {};
+        if(endIndex < await db.Message.countDocuments().exec()) {
+            results.hasMore = true;
+        } else {
+            results.hasMore = false;
+        }
+        results.results = await db.Message.find()
                 .lean()
                 .sort({ createdAt: -1 })
+                .limit(limit)
+                .skip(startIndex)
                 .populate("user", { username: true, profileImage: true })
                 .select('text user createdAt likesNumber');
                 
-        return res.status(200).json(messages);
+        return res.status(200).json(results);
     } catch (err) {
         return next(err);
     }

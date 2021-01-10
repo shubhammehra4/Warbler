@@ -3,7 +3,7 @@ import { LOAD_MESSAGES, REMOVE_MESSAGES, NEW_MESSAGE, LIKE_MESSAGE, UNLIKE_MESSA
 const messages = (state = [], action) => {
     switch (action.type) {
         case LOAD_MESSAGES:
-            return [...action.messages];
+            return [...state, ...action.messages.results];
         case NEW_MESSAGE:
             return [action.message, ...state];
         case REMOVE_MESSAGES:

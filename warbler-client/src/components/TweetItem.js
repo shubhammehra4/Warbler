@@ -9,8 +9,8 @@ const tagStyle = {
     color: "#1da1f2"
 }
 
-const TweetItem = ({ date, profileImage, username, text, removeMessage, isCorrectUser, likes, likeMessage, unlikeMessage }) => (
-    <li className="tweet">
+const TweetItem = React.forwardRef(({ date, profileImage, username, text, removeMessage, isCorrectUser, likes, likeMessage, unlikeMessage }, ref) => (
+    <li className="tweet" ref={ref}>
         <span className ="dropdown">
             <img src={profileImage || "https://abs.twimg.com/favicons/twitter.ico"} alt={username} />
             <UserDropdown profileImage={profileImage} username={username} />
@@ -44,6 +44,6 @@ const TweetItem = ({ date, profileImage, username, text, removeMessage, isCorrec
             </div>
         </div>
     </li>
-);
+));
 
 export default TweetItem;

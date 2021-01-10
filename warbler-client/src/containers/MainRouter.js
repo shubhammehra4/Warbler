@@ -7,6 +7,7 @@ import { authUser } from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
 import SideBar from '../components/SideBar';
 import NewsFeed from '../components/NewsFeed';
+import TweetList1 from './TweetList1';
 
 
 const MainRouter = (props) => {
@@ -65,6 +66,7 @@ const MainRouter = (props) => {
                     />
                 }
             </Route>
+            <Route exact path="/exp"><TweetList1/></Route>
         </Switch>
     );
 };

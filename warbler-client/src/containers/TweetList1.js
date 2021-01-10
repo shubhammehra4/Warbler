@@ -2,36 +2,24 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { connect } from "react-redux";
 import { fetchMessages, removeMessage, likeRequest, unlikeRequest } from '../store/actions/messages';
 import TweetItem from '../components/TweetItem';
-import axios from 'axios';
 
 
-function TweetList1 ({ messages, removeMessage, currentUser, likeRequest, unlikeRequest }) {
+function TweetList1 ({ messages, removeMessage, currentUser, likeRequest, unlikeRequest, fetchMessages }) {
     const [loading, setLoading] = useState(true);
-    const [page, setPage] = useState(2)
-    const [messageList, setMessageList] = useState(messages); 
-    const [error, setError] = useState(false);
-    const [hasMore, setHasMore] = useState(false);
+    const [page, setPage] = useState(1)
+    const [hasMore, setHasMore] = useState(true);
 
     useEffect(() => {
+        console.log("rendered");
         setLoading(true)
-        setError(false)
-        axios({
-            method: "GET",
-            url: "/api/messagePage",
-            params: {page}
-        }).then(res=> {
-            console.log(res.data);
-            setMessageList( prevMessages => {
-                return [...new Set([...prevMessages, ...res.data.results])];
-            });
-            setHasMore(res.data.hasMore);
-            setLoading(false)
-        })
-        .catch(err=> {
-            console.log(err)
-            setError(true);
+        
+        fetchMessages(page)
+        .then(res => {
+            console.log("sent");
+            setHasMore(res);
+            setLoading(false);
         });
-    }, [page]);
+    }, [page, fetchMessages]);
 
     const observer = useRef()
     const lastBookElementRef = useCallback(node => {
@@ -44,42 +32,29 @@ function TweetList1 ({ messages, removeMessage, currentUser, likeRequest, unlike
         })
         if (node) observer.current.observe(node)
     }, [loading, hasMore])
-    // const { messages, removeMessage, currentUser, likeRequest, unlikeRequest } = this.props;
-    // let feed = messageList.map(m => (
-    //     <TweetItem 
-    //         key={m._id} 
-    //         date={m.createdAt} 
-    //         text={m.text} 
-    //         likes={m.likesNumber}
-    //         username={m.user.username}
-    //         profileImage={ m.user.profileImage }
-    //         removeMessage={ removeMessage.bind(this, m.user._id, m._id) }
-    //         likeMessage={ likeRequest.bind(this, m.user._id, m._id) }
-    //         unlikeMessage={ unlikeRequest.bind(this, m.user._id, m._id) }
-    //         isCorrectUser={ currentUser.id ===  m.user._id }
-    //     />
-    // ))
     return (
-        <>
-            { messageList.map((m, index) => (
-                <TweetItem 
-                    key={m._id} 
-                    date={m.createdAt} 
-                    text={m.text} 
-                    likes={m.likesNumber}
-                    username={m.user.username}
-                    profileImage={ m.user.profileImage }
-                    removeMessage={ removeMessage.bind(this, m.user._id, m._id) }
-                    likeMessage={ likeRequest.bind(this, m.user._id, m._id) }
-                    unlikeMessage={ unlikeRequest.bind(this, m.user._id, m._id) }
-                    isCorrectUser={ currentUser.id ===  m.user._id }
-                    ref={messageList.length === index+1 ? lastBookElementRef : null}
-                />
-            ))
+        <div className="tweetList">
+            <ul className="tweets">
+                { messages.map((m, index) => (
+                    <TweetItem 
+                        key={m._id} 
+                        date={m.createdAt} 
+                        text={m.text} 
+                        likes={m.likesNumber}
+                        username={m.user.username}
+                        profileImage={ m.user.profileImage }
+                        removeMessage={ removeMessage.bind(this, m.user._id, m._id) }
+                        likeMessage={ likeRequest.bind(this, m.user._id, m._id) }
+                        unlikeMessage={ unlikeRequest.bind(this, m.user._id, m._id) }
+                        isCorrectUser={ currentUser.id ===  m.user._id }
+                        ref={messages.length === index+1 ? lastBookElementRef : null}
+                    />
+                ))
             }
-            <div>{loading && 'Loading...'}</div>
-            <div>{error && 'Error'}</div>
-        </>
+            </ul>
+            <div style={{fontSize:"100px"}}>{loading && 'Loading...'}</div>
+            {/* <div>{error && 'Error'}</div> */}
+        </div>
     )
 };
 

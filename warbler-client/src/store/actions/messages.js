@@ -36,10 +36,14 @@ export const unlikeMessage = id => {
     }
 }
 
-export const fetchMessages = () => {
+export const fetchMessages = (page) => {
     return dispatch => {
-        return apiCall("GET", "/api/messages")
-            .then(res => dispatch(loadMessages(res)))
+        console.log("sent redux");
+        return apiCall("GET", `/api/messages?page=${page}`)
+            .then(res => {
+                dispatch(loadMessages(res))
+                return res.hasMore;
+            })
             .catch(err => dispatch(addError(err.message)));
     };
 };
