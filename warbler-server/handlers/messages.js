@@ -23,6 +23,30 @@ exports.createMessage = async function (req, res, next) {
     }
 };
 
+
+exports.getMessage = async function (req, res, next) {
+    try {
+        let message = await db.Message.findById(req.params.message_id).lean();
+
+        return res.status(200).json(message);
+    } catch (err) {
+        return next(err);
+    }
+};
+
+
+exports.deleteMessage = async function (req, res, next) {
+    try {
+        let foundMessage = await db.Message.findById(req.params.message_id);
+        await foundMessage.remove();
+
+        return res.status(200).json(foundMessage);
+    } catch (err) {
+        return next(err);
+    }
+};
+
+
 exports.likeMessage = async function (req, res, next) {
     try {
         let foundMessage = await db.Message.findById(req.params.message_id);
@@ -46,6 +70,7 @@ exports.likeMessage = async function (req, res, next) {
         next(err);
     }
 };
+
 
 exports.unlikeMessage = async function (req, res, next) {
     try {
@@ -74,23 +99,3 @@ exports.unlikeMessage = async function (req, res, next) {
     }
 }
 
-exports.getMessage = async function (req, res, next) {
-    try {
-        let message = await db.Message.findById(req.params.message_id).lean();
-
-        return res.status(200).json(message);
-    } catch (err) {
-        return next(err);
-    }
-};
-
-exports.deleteMessage = async function (req, res, next) {
-    try {
-        let foundMessage = await db.Message.findById(req.params.message_id);
-        await foundMessage.remove();
-
-        return res.status(200).json(foundMessage);
-    } catch (err) {
-        return next(err);
-    }
-};
