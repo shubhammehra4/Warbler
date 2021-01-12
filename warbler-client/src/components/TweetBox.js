@@ -20,7 +20,7 @@ function TweetBox({ profileImage, username, postNewMessage }) {
     return (
         <form onSubmit={ handleSubmit }>
                 <div className="new__tweet">
-                    <img src={profileImage || "https://abs.twimg.com/favicons/twitter.ico"} alt={ username } />
+                    <img src={profileImage || "https://images.unsplash.com/profile-1601277045639-93845dc02dd2image"} alt={ username } />
                     <div className="tweet-content">
                         <TextareaAutosize
                             name="text" 
@@ -30,7 +30,11 @@ function TweetBox({ profileImage, username, postNewMessage }) {
                             maxLength={ 150 }
                             maxRows={ 15 }
                         />
-                        <button className="tweet__post" disabled={ !text } type="submit">Tweet</button>
+                        <div className="new__tweet__options">
+                            <i class="far fa-image"></i>
+                            <i class="far fa-smile"></i>
+                            <button disabled={ !text } type="submit">Tweet</button>
+                        </div>
                     </div>
                 </div>
             </form>

@@ -9,46 +9,30 @@ function SideBar (props) {
         props.logout();
     }
     const {username, profileImage} = props.currentUser;
-    // render() {
-    //     const {username, profileImage} = this.props.currentUser;
-        return (
-            <aside className="sidebar">
-                {/* TWITTER ICON */}
-                <i className="fab fa-twitter brand"></i>
-                
-                <SideBarOption route="/home" icon="fas fa-home" text="Home" />
-                <SideBarOption route="/explore" icon="fas fa-hashtag" text="Explore" />
-                <SideBarOption route="/notifications" icon="far fa-bell" text="Notifications" />                
-                <SideBarOption route="/messages" icon="far fa-envelope" text="Messages" />
-                {/* <NavLink exact to="/home" activeClassName="selected">
-                    <i className="fa fa-home"></i>&nbsp;
-                    <span className="nav-text">Home</span>
-                </NavLink>
-                <NavLink exact to="/explore" activeClassName="selected">
-                    <i className="fa fa-hashtag"></i>&nbsp;
-                    <span className="nav-text">Explore</span>
-                </NavLink>
-                <NavLink exact to="/messages" activeClassName="selected">
-                    <i className="fa fa-envelope-o"></i>&nbsp;
-                    <span className="nav-text">Messages</span>
-                </NavLink>
-                <NavLink exact to="/profile" activeClassName="selected">
-                    <i className="fa fa-user"></i>&nbsp;
-                    <span className="nav-text">Profile</span>
-                </NavLink> */}
-                <button className="sidebar__tweet__post" type="button">Tweet</button>
-                <div className="sidebar__user__pill">
-                    <img className="user__pill__image" src={ profileImage || "https://abs.twimg.com/favicons/twitter.ico" } alt="user"/>
-                    <div className="user__pill__user">
-                        <h4>Shubham Mehra</h4>
-                        <h6 className="text-muted underlined">@{ username }</h6>
-                    </div>
-                    <i className="fas fa-ellipsis-v" onClick={ logout }></i>
-                    {/* <button onClick={ logout }>Log Out</button> */}
+    return (
+        <header className="sidebar">
+        <div className="align">
+            <i className="fab fa-twitter brand selected"></i>
+            
+            <SideBarOption route="/home" icon="far fa-home" text="Home" />
+            <SideBarOption route="/explore" icon="far fa-hashtag" text="Explore" />
+            <SideBarOption route="/notifications" icon="far fa-bell" text="Notifications" />                
+            <SideBarOption route="/messages" icon="far fa-envelope" text="Messages" />
+            <SideBarOption route="/bookmarks" icon="far fa-bookmark" text="Bookmarks" />
+            <SideBarOption route="/profile" icon="far fa-user" text="Profile" />
+            <SideBarOption route="" icon="far fa-ellipsis-h" text="More" />
+            <button className="sidebar__tweet__post" type="button">Tweet</button>
+            <div className="user__pill">
+                <img src={ profileImage || "https://abs.twimg.com/favicons/twitter.ico" } alt="user"/>
+                <div>
+                    <h4>Shubham Mehra</h4>
+                    <h6 className="text-muted underlined">@{ username }</h6>
                 </div>
-            </aside>
-        )
-    // }
+                <i className="fas fa-ellipsis-v" onClick={ logout }></i>
+            </div>
+            </div>
+        </header>
+    )
 }
 
 

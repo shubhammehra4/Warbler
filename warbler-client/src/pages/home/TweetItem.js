@@ -12,7 +12,7 @@ const tagStyle = {
 const TweetItem = React.forwardRef(({ date, profileImage, username, text, removeMessage, isCorrectUser, likes, likeMessage, unlikeMessage }, ref) => (
     <li className="tweet" ref={ref}>
         <span className ="dropdown">
-            <img src={profileImage || "https://abs.twimg.com/favicons/twitter.ico"} alt={username} />
+            <img src={profileImage || "https://images.unsplash.com/profile-1601277045639-93845dc02dd2image"} alt={username} />
             <UserDropdown profileImage={profileImage} username={username} />
         </span>
         <div className="tweet__area">
@@ -36,8 +36,9 @@ const TweetItem = React.forwardRef(({ date, profileImage, username, text, remove
             </div>
             <div className="tweet__options">
                 <i className="far fa-comment" aria-hidden="true"></i>
-                <i className="fas fa-share" aria-hidden="true"></i>
+                <i class="fas fa-retweet"></i>
                 <i className="far fa-heart" onClick={ likeMessage } aria-hidden="true">&nbsp;{likes}</i> 
+                <i className="fas fa-share" aria-hidden="true"></i>
                 { isCorrectUser &&
                     <i className="fas fa-trash" onClick={ removeMessage } aria-hidden="true"></i>
                 }

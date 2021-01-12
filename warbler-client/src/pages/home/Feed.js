@@ -1,7 +1,6 @@
 import React from 'react';
-// import MessageForm from '../containers/MessageForm';
-import TweetList from '../containers/TweetList';
-import TweetBox from './TweetBox';
+import TweetList from './TweetList';
+import TweetBox from '../../components/TweetBox';
 
 const Feed = ({currentUser}) => {
     return (

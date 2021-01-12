@@ -1,25 +1,25 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { connect } from "react-redux";
-import { fetchMessages, removeMessage, likeRequest, unlikeRequest } from '../store/actions/messages';
-import TweetItem from '../components/TweetItem';
+import { fetchMessages, removeMessage, likeRequest, unlikeRequest } from '../../store/actions/messages';
+import TweetItem from './TweetItem';
 
 
 function TweetList ({ messages, removeMessage, currentUser, likeRequest, unlikeRequest, fetchMessages }) {
     const [loading, setLoading] = useState(true);
-    const [page, setPage] = useState(1)
+    const [count, setCount] = useState(0);
     const [hasMore, setHasMore] = useState(true);
 
     useEffect(() => {
         console.log("rendered");
         setLoading(true)
         
-        fetchMessages(page)
+        fetchMessages(count)
         .then(res => {
             console.log("sent");
             setHasMore(res);
             setLoading(false);
         });
-    }, [page, fetchMessages]);
+    }, [count, fetchMessages]);
 
     const observer = useRef()
     const lastBookElementRef = useCallback(node => {
@@ -27,11 +27,12 @@ function TweetList ({ messages, removeMessage, currentUser, likeRequest, unlikeR
         if (observer.current) observer.current.disconnect()
         observer.current = new IntersectionObserver(entries => {
         if (entries[0].isIntersecting && hasMore) {
-            setPage(prevPageNumber => prevPageNumber + 1)
+            console.log("set count");
+            setCount(messages.length)
         }
         })
         if (node) observer.current.observe(node)
-    }, [loading, hasMore])
+    }, [loading, hasMore, messages.length])
     return (
         <div className="tweetList">
             <ul className="tweets">
@@ -47,12 +48,16 @@ function TweetList ({ messages, removeMessage, currentUser, likeRequest, unlikeR
                         unlikeMessage={ unlikeRequest.bind(this, currentUser.id, m._id) }
                         isCorrectUser={ currentUser.id ===  m.user._id }
                         removeMessage={ removeMessage.bind(this, m.user._id, m._id) }
-                        ref={messages.length === index+1 ? lastBookElementRef : null}
+                        ref={messages.length === index+5 ? lastBookElementRef : null}
                     />
                 ))
                 }
             </ul>
-            <div style={{fontSize:"100px"}}>{loading && 'Loading...'}</div>
+            {loading && 
+                <div className="loading">
+                    <div style={{alignItems:"center"}} className="ld ld-ring ld-spin"></div>
+                </div>
+            }
         </div>
     )
 };

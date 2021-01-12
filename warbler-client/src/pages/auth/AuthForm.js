@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import AuthFormOptions from './AuthFormOptions';
-import signin from '../images/signin.svg';
-import signup from '../images/signup.svg';
-import '../styles/authform.css';
+import signin from '../../images/signin.svg';
+import signup from '../../images/signup.svg';
+import '../../styles/authform.css';
 
 export default class AuthForm extends Component {
     constructor(props) {

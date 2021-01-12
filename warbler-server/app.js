@@ -24,17 +24,18 @@ app.use('/api/user/:id/', loginRequired, userRoutes);
 
 app.get("/api/messages", loginRequired, async function (req, res, next) {
     try {
-        const page = parseInt(req.query.page);
+        const skip = parseInt(req.query.skip);
         const limit = 20;
-        const startIndex = (page-1) * limit;
-        const endIndex = page * limit;
+        const startIndex = skip+1;
+        const endIndex = startIndex + limit;
         const results = {};
         if(endIndex < await db.Message.countDocuments().exec()) {
             results.hasMore = true;
         } else {
             results.hasMore = false;
         }
-        results.results = await db.Message.find()
+        results.results = 
+            await db.Message.find()
                 .lean()
                 .sort({ createdAt: -1 })
                 .limit(limit)

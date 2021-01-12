@@ -1,13 +1,12 @@
 import React from 'react';
 import { Redirect, Switch, Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import Feed from "../components/Feed";
-import AuthForm from '../components/AuthForm';
+import Feed from "./home/Feed";
+import AuthForm from './auth/AuthForm';
 import { authUser } from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
 import SideBar from '../components/SideBar';
 import NewsFeed from '../components/NewsFeed';
-import TweetList1 from './TweetList1';
 
 
 const MainRouter = (props) => {
@@ -20,7 +19,8 @@ const MainRouter = (props) => {
             <Route exact path="/home" >
                 {currentUser.isAuthenticated ?
                     <div className="app">
-                        <SideBar /> <Feed currentUser={currentUser} {...props} /> <NewsFeed />
+                        <SideBar />
+                        <main className="main"> <Feed currentUser={currentUser} {...props} />  <NewsFeed /> </main>
                     </div>
                     :
                     <Redirect to="/auth" />
@@ -28,34 +28,15 @@ const MainRouter = (props) => {
             </Route>
             <Route exact path="/explore">
                 {currentUser.isAuthenticated ?
-                    <div className="home-page">
-                        <SideBar /> <span style={{width:"50%"}}> Explore </span> <NewsFeed />
+                    <div className="app"> 
+                        <SideBar />
+                        <main className="main"> <Feed currentUser={currentUser} {...props} />  <NewsFeed /> </main>
                     </div>
                     :
                     <Redirect to="/auth" />
                 }
             </Route>
-            {/* <Route exact path='/signin'>
-            { currentUser.isAuthenticated ? <Redirect to="/home" /> 
-                    :   <AuthForm 
-                            removeError={removeError} 
-                            errors={errors} 
-                            onAuth={authUser} 
-                            buttonText="Log In" 
-                            heading="Welcome Back." 
-                        />
-                }
-            </Route> */}
-            {/* render={props => {
-                return (
-                    <AuthForm 
-                        removeError={removeError} 
-                        errors={errors} onAuth={authUser} 
-                        buttonText="Log In" 
-                        heading="Welcome Back." {...props} 
-                    />
-                );
-            }} */}
+                
             <Route exact path='/auth'>
             { currentUser.isAuthenticated ? <Redirect to="/home" /> 
                     :   
@@ -66,7 +47,6 @@ const MainRouter = (props) => {
                     />
                 }
             </Route>
-            <Route exact path="/exp"><TweetList1/></Route>
         </Switch>
     );
 };
