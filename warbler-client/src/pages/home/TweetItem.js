@@ -31,7 +31,11 @@ const TweetItem = React.forwardRef(({ date, profileImage, username, text, remove
                 </section>
             
                 <span>
-                    <i className="fas fa-ellipsis-v" aria-hidden="true"></i>
+                    { isCorrectUser ?
+                        <i className="fas fa-trash" onClick={ removeMessage } aria-hidden="true"></i>
+                    : 
+                        <i className="fas fa-ellipsis-v" aria-hidden="true"></i>
+                    }
                 </span>
             </div>
             <div className="tweet__options">
@@ -39,9 +43,6 @@ const TweetItem = React.forwardRef(({ date, profileImage, username, text, remove
                 <i class="fas fa-retweet"></i>
                 <i className="far fa-heart" onClick={ likeMessage } aria-hidden="true">&nbsp;{likes}</i> 
                 <i className="fas fa-share" aria-hidden="true"></i>
-                { isCorrectUser &&
-                    <i className="fas fa-trash" onClick={ removeMessage } aria-hidden="true"></i>
-                }
             </div>
         </div>
     </li>

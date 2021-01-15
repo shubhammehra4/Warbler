@@ -38,7 +38,8 @@ exports.signin = async function (req, res, next) {
 exports.signup = async function (req, res, next) {
     try {
         if (req.body.password === req.body.confirmpassword) {
-            let user = await db.User.create(req.body);
+            console.log(req.body);
+            let user = await db.User.create({...req.body});
             let { id, username, profileImage } = user;
             let token = jwt.sign({
                     id,
@@ -61,6 +62,7 @@ exports.signup = async function (req, res, next) {
         }
         
     } catch (err) {
+        console.log("here");
         //if validation fails
         if (err.code === 11000) {
             err.keyPattern.email ?

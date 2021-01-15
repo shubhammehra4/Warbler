@@ -34,6 +34,7 @@ messageSchema.pre('remove', async function (next) {
         user.messages.remove(this.id);
         await User.update({}, { $pull: { likedMessages: { $in: this.id } } });
         await user.save();
+        
         return next();
     } catch (err) {
         return next(err);

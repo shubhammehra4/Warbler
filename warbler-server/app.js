@@ -1,14 +1,16 @@
 require('dotenv').config();
 const express = require('express'),
+    fileUpload = require('express-fileupload'),
     cors = require('cors'),
     bodyParser = require('body-parser'),
-    db = require('./models/index');
+    db = require('./models/index'),
     app = express();
 const errorHandler = require('./handlers/error');
 
-
+app.use(fileUpload());
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
     
 
 //* Routes

@@ -10,6 +10,8 @@ export default class AuthForm extends Component {
         this.state = {
             email: "",
             username: "",
+            name: "",
+            profile: "",
             password: "",
             confirmpassword:"",
             auth: "signup",
@@ -22,13 +24,31 @@ export default class AuthForm extends Component {
             [e.target.name]: e.target.value
         });
     };
+    handleFiles = (e) => {
+        console.log(e.target.files);
+        this.setState({
+            [e.target.name]: e.target.files[0]
+        });
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.removeError();
+        const formData = new FormData(); 
+     
+      // Update the formData object 
+            formData.append( 
+                "file", 
+                this.state.profile, 
+                this.state.profile.name 
+            ); 
+     
+      // Details of the uploaded file 
+    //   console.log(formData.get("myFile")); 
         // const authType = this.props.signup ? "signup" : "signin";
-        this.props.onAuth(e.target.id, this.state)
+        this.props.onAuth(e.target.id, formData)
             .then(() => {
+                // this.setState({});
                 this.props.history.push("/home");
             })
             .catch(() => {
@@ -46,7 +66,7 @@ export default class AuthForm extends Component {
     }
 
     render() {
-        const { email, username, auth, active } = this.state;
+        const { email, username, name, auth, active } = this.state;
         // const { errors } = this.props;
 
         return (
@@ -78,6 +98,9 @@ export default class AuthForm extends Component {
                             </button>
                             <AuthFormOptions />
                         </form>
+
+
+
                         <form onSubmit={ this.handleSubmit } id="signup" className="sign-up-form">
                             <h2 className="title">Sign up</h2>
                             <div className="input-field">
@@ -96,6 +119,22 @@ export default class AuthForm extends Component {
                                     name="email" id="email"
                                     onChange={this.handleChange}
                                     value={email}
+                                />
+                            </div>
+                            <div className="input-field">
+                                <i className="fas fa-envelope"></i>
+                                <input type="text" 
+                                    placeholder="Name"
+                                    name="name" id="name"
+                                    onChange={this.handleChange}
+                                    value={name}
+                                />
+                            </div>
+                            <div className="input-field">
+                                <i className="fas fa-file"></i>
+                                <input type="file"
+                                    name="profile"
+                                    onChange={this.handleFiles}
                                 />
                             </div>
                             <div className="input-field">
